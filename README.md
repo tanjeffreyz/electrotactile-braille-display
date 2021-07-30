@@ -6,4 +6,4 @@ The Electrotactile Braille Display (ETBD) is a refreshable braille display that 
 Because it has no moving parts, the ETBD has the potential to be much lighter, thinner, and cheaper compared to mechanical braille displays, which use physical braille pins.
 <br></br>
 
-(This project's full description can be found <a href="https://tanjeffreyz02.github.io/Electrotactile%20Braille%20Display.html">here</a>).
+(This project's full description can be found <a href="https://sites.google.com/berkeley.edu/jeffrey-tan/projects/electrotactile-braille-display">here</a>).
