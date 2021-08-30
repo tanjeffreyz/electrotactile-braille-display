@@ -1,4 +1,4 @@
-# Electrotactile-Braille-Display
+# Electrotactile Braille Display
 <p align="center">
   <img src="https://user-images.githubusercontent.com/69165598/127417532-eb0e6ea6-da88-450e-bb05-25d5a5102f7c.jpg" width="600px">
 </p>
