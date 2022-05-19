@@ -1,0 +1,21 @@
+.block:before {
+    height: 75px;
+    content: "";
+    display: block;
+}
+
+h1 {
+    padding-bottom: 20px;
+}
+
+p {
+    padding-top: 10px;
+}
+
+.carousel-caption {
+    right: 0%;
+    left: 0%;
+    bottom: 0%;
+    padding-bottom: 2.25rem;
+    background-color: rgba(0, 0, 0, 0.667);
+}

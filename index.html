@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Electrotactile Braille Display</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="css/custom.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!---------------------------
+        |       Navigation Bar      |
+        ---------------------------->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light ps-5 pe-5">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"">Electrotactile Braille Display</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-nowrap" href="#intro">Introduction</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link text-nowrap" href="#stimulation">Electrical Stimulation</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link text-nowrap" href="#schematic">Schematic</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link text-nowrap" href="#feedback">PID Feedback Control</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link text-nowrap" href="#prototypes">Prototypes</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!---------------------------
+        |       Introduction        |
+        ---------------------------->
+        <div id="intro" class="container-fluid block">
+            <h1 align="center">Electrotactile Braille Display</h1>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-5">
+                    <img class="rounded img-fluid" src="assets/version-4.jpg" />
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-7">
+                    <p>
+                        The Electrotactile Braille Display (ETBD) is a refreshable braille display that uses electrical pulses to simulate the 
+                        feeling of braille dots on the user's fingertips. Because it has no moving parts, the ETBD has the potential to be much 
+                        lighter, thinner, and cheaper compared to mechanical braille displays, which use physical braille pins.
+                    </p>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+        
+
+        <!---------------------------
+        |   Electrical Stimulation  |
+        ---------------------------->
+        <div id="stimulation" class="container-fluid block">
+            <h1 align="center">Electrical Stimulation</h1>
+            <div class="row align-items-center">
+                <div class="col"></div>
+                <div class="col-5">
+                    <p>
+                        In electrical stimulation, an electric current is sent across certain nerves or receptors to control their behavior and, 
+                        in some cases, to imitate physical textures. This concept is often used in physical therapy to reduce pain or to rehabilitate 
+                        muscles.
+                    </p>
+                    <p>
+                        In the current version of the ETBD, electrical pulses enter the finger through small copper pads on the reader's surface 
+                        and exit through a ring that the user wears. This way, the current is guaranteed to stimulate the Meissner's corpuscles 
+                        (which sense indentation) and Merkel's disks (which sense pressure) under the skin instead of only passing through the surface.
+                    </p>
+                </div>
+                <div class="col-3">
+                    <img class="rounded img-fluid" src="assets/electrical-stimulation.png" />
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+
+        <!---------------------------
+        |        Schematic          |
+        ---------------------------->
+        <div id="schematic" class="container-fluid block">
+            <h1 align="center">Schematic</h1>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-7">
+                    <img class="rounded img-fluid" src="assets/schematic.png" />
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-7">
+                    <p>
+                        The PWM signal from pin D10 on the Arduino first passes through an RC circuit, the output voltage of which is determined 
+                        by the PWM signal's duty cycle. This output voltage is fed into a power op-amp, which is wired to output the exact voltage 
+                        it receives but with a larger current in order to drive the transformer.  The transformer then significantly amplifies 
+                        the voltage (but divides the current by the same factor) and sends electrical pulses to the fingertip. After exiting the 
+                        fingertip, the current passes through a resistor, the voltage across which is read by pin A6 and used during feedback 
+                        control to ensure a consistent stimulation.
+                    </p>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+
+        <!---------------------------
+        |    PID Feedback Control   |
+        ---------------------------->
+        <div id="feedback" class="container-fluid block">
+            <h1 align="center">PID Feedback Control</h1>
+            <div class="row align-items-center">
+                <div class="col"></div>
+                <div class="col-5">
+                    <img class="rounded img-fluid" src="assets/feedback-control-code.jpg" />
+                </div>
+                <div class="col-4">
+                    <p>
+                        The ETBD uses a proportional-integral-derivative (PID) feedback loop to maintain a constant current through the user's 
+                        finger, no matter the fingertip resistance. 
+                    </p>
+                    <p>
+                        The proportional component tries to minimize the error between the current voltage and the target voltage. The integral 
+                        component depends on the total error accumulated over time, which helps the output voltage reach the target faster. 
+                        However, this on its own often leads to overshooting, so the derivative component (based on the change in error at every 
+                        step) is needed to dampen the system.
+                    </p>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+
+        <!---------------------------
+        |        Prototypes         |
+        ---------------------------->
+        <div id="prototypes" class="container-fluid block">
+            <h1 align="center">Prototypes</h1>
+            <div class="row align-items-center">
+                <div class="col"></div>
+                <div class="col-6">
+                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        </div>
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="assets/version-1.jpg" class="d-block w-100 rounded" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                              <h5>Version 1</h5>
+                              <p>The feeling it produced was very intense, sharp, and inconsistent.</p>
+                            </div>
+                          </div>
+                          <div class="carousel-item">
+                            <img src="assets/version-2.jpg" class="d-block w-100 rounded" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                              <h5>Version 2</h5>
+                              <p>More robust and controllable, and uses PWM signals fine-tune output voltage.</p>
+                            </div>
+                          </div>
+                          <div class="carousel-item">
+                            <img src="assets/version-3.jpg" class="d-block w-100 rounded" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                              <h5>Version 3</h5>
+                              <p>Switched from protoboard to PCB. Did not use a ring, so the stimulation felt very weak.</p>
+                            </div>
+                          </div>
+                          <div class="carousel-item">
+                            <img src="assets/version-4.jpg" class="d-block w-100 rounded" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                              <h5>Current Version</h5>
+                              <p>Implemented a feedback loop to maintain consistent stimulation across various fingertip resistances.</p>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+
+        <!---------------------------
+        |          Footer           |
+        ---------------------------->
+        <div class="container-fluid block"></div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>
