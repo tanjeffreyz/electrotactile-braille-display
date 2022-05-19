@@ -7,6 +7,10 @@
     }
 }
 
+.rounded {
+    border-radius: 0.75rem !important;
+}
+
 body {
     opacity: 0;
     animation: fade-in 1s ease-out forwards;
@@ -32,4 +36,6 @@ p {
     bottom: 0%;
     padding-bottom: 2.25rem;
     background-color: rgba(0, 0, 0, 0.667);
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
 }
