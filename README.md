@@ -10,3 +10,4 @@ Because it has no moving parts, the ETBD has the potential to be much lighter, t
 <div align="center">
   <a href="https://tanjeffreyz.github.io/electrotactile-braille-display"><b>Click here to view this project's full description</b></a>
 </div>
+ 
